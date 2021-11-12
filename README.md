@@ -11,4 +11,3 @@ note left of Substrate: pallet_society
 note right of IPFS: Image library for badges
 Substrate->IPFS: generate unique badge
 Frontend->Substrate: PolkadotJS API
-
