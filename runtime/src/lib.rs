@@ -31,17 +31,23 @@ pub use frame_support::{
 		constants::{BlockExecutionWeight, ExtrinsicBaseWeight, RocksDbWeight, WEIGHT_PER_SECOND},
 		IdentityFee, Weight,
 	},
+	PalletId,
 	StorageValue,
 };
+use frame_system::{EnsureOneOf, EnsureRoot};
+use sp_core::u32_trait::{_1, _2, _3, _5};
 pub use pallet_balances::Call as BalancesCall;
 pub use pallet_timestamp::Call as TimestampCall;
 use pallet_transaction_payment::CurrencyAdapter;
 #[cfg(any(feature = "std", test))]
 pub use sp_runtime::BuildStorage;
-pub use sp_runtime::{Perbill, Permill};
+pub use sp_runtime::{Perbill, Permill, Percent};
 
 /// Import the template pallet.
 pub use pallet_template;
+use pallet_collective;
+use pallet_treasury;
+use pallet_bounties;
 
 /// An index to a block.
 pub type BlockNumber = u32;
@@ -120,6 +126,11 @@ pub const SLOT_DURATION: u64 = MILLISECS_PER_BLOCK;
 pub const MINUTES: BlockNumber = 60_000 / (MILLISECS_PER_BLOCK as BlockNumber);
 pub const HOURS: BlockNumber = MINUTES * 60;
 pub const DAYS: BlockNumber = HOURS * 24;
+
+// Money stuff.
+pub const MILLICENTS: Balance = 1_000_000_000;
+pub const CENTS: Balance = 1_000 * MILLICENTS; // assume this is worth about a cent.
+pub const DOLLARS: Balance = 100 * CENTS;
 
 /// The version information used to identify this runtime when compiled natively.
 #[cfg(feature = "std")]
@@ -293,6 +304,65 @@ impl pallet_collective::Config<CouncilCollective> for Runtime {
 	type WeightInfo = pallet_collective::weights::SubstrateWeight<Runtime>;
 }
 
+// Treasury and Bounties pallets.
+parameter_types! {
+	pub const ProposalBond: Permill = Permill::from_percent(5);
+	pub const ProposalBondMinimum: Balance = 1 * DOLLARS;
+	pub const SpendPeriod: BlockNumber = 1 * DAYS;
+	pub const Burn: Permill = Permill::from_percent(50);
+	pub const TipCountdown: BlockNumber = 1 * DAYS;
+	pub const TipFindersFee: Percent = Percent::from_percent(20);
+	pub const TipReportDepositBase: Balance = 1 * DOLLARS;
+	pub const DataDepositPerByte: Balance = 1 * CENTS;
+	pub const BountyDepositBase: Balance = 1 * DOLLARS;
+	pub const BountyDepositPayoutDelay: BlockNumber = 1 * DAYS;
+	pub const TreasuryPalletId: PalletId = PalletId(*b"py/trsry");
+	pub const BountyUpdatePeriod: BlockNumber = 14 * DAYS;
+	pub const MaximumReasonLength: u32 = 16384;
+	pub const BountyCuratorDeposit: Permill = Permill::from_percent(50);
+	pub const BountyValueMinimum: Balance = 5 * DOLLARS;
+	pub const MaxApprovals: u32 = 100;
+}
+
+// Treasury.
+impl pallet_treasury::Config for Runtime {
+	type PalletId = TreasuryPalletId;
+	type Currency = Balances;
+	type ApproveOrigin = EnsureOneOf<
+		AccountId,
+		EnsureRoot<AccountId>,
+		pallet_collective::EnsureProportionAtLeast<_3, _5, AccountId, CouncilCollective>,
+	>;
+	type RejectOrigin = EnsureOneOf<
+		AccountId,
+		EnsureRoot<AccountId>,
+		pallet_collective::EnsureProportionMoreThan<_1, _2, AccountId, CouncilCollective>,
+	>;
+	type Event = Event;
+	type OnSlash = ();
+	type ProposalBond = ProposalBond;
+	type ProposalBondMinimum = ProposalBondMinimum;
+	type SpendPeriod = SpendPeriod;
+	type Burn = Burn;
+	type BurnDestination = ();
+	type SpendFunds = Bounties;
+	type WeightInfo = pallet_treasury::weights::SubstrateWeight<Runtime>;
+	type MaxApprovals = MaxApprovals;
+}
+
+// Bounties. 
+impl pallet_bounties::Config for Runtime {
+	type Event = Event;
+	type BountyDepositBase = BountyDepositBase;
+	type BountyDepositPayoutDelay = BountyDepositPayoutDelay;
+	type BountyUpdatePeriod = BountyUpdatePeriod;
+	type BountyCuratorDeposit = BountyCuratorDeposit;
+	type BountyValueMinimum = BountyValueMinimum;
+	type DataDepositPerByte = DataDepositPerByte;
+	type MaximumReasonLength = MaximumReasonLength;
+	type WeightInfo = pallet_bounties::weights::SubstrateWeight<Runtime>;
+}
+
 /// Configure the pallet-template in pallets/template.
 impl pallet_template::Config for Runtime {
 	type Event = Event;
@@ -314,6 +384,8 @@ construct_runtime!(
 		TransactionPayment: pallet_transaction_payment,
 		Sudo: pallet_sudo,
 		Council: pallet_collective::<Instance1>::{Pallet, Call, Storage, Origin<T>, Event<T>, Config<T>} = 11,
+		Treasury: pallet_treasury,
+		Bounties: pallet_bounties,
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
 	}

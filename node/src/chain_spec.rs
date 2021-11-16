@@ -152,5 +152,6 @@ fn testnet_genesis(
 		},
 		transaction_payment: Default::default(),
 		council: Default::default(),
+		treasury: Default::default(),
 	}
 }
