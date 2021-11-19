@@ -30,6 +30,18 @@ jsonrpc-core = '18.0.0'
 structopt = '0.3.8'
 hex-literal = '0.3'
 
+[dependencies.fp-rpc]
+git = 'https://github.com/purestake/frontier.git'
+branch = 'workshop-target'
+
+[dependencies.fc-rpc]
+git = 'https://github.com/purestake/frontier.git'
+branch = 'workshop-target'
+
+[dependencies.sc-network]
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-10'
+
 [dependencies.frame-benchmarking]
 git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-10'

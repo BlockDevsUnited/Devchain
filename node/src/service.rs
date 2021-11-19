@@ -220,7 +220,7 @@ pub fn new_full(mut config: Configuration) -> Result<TaskManager, ServiceError> 
 
 		Box::new(move |deny_unsafe, _| {
 			let deps =
-				crate::rpc::FullDeps { client: client.clone(), pool: pool.clone(), deny_unsafe };
+				crate::rpc::FullDeps { client: client.clone(), pool: pool.clone(), deny_unsafe, network: network.clone()};
 
 			Ok(crate::rpc::create_full(deps))
 		})
