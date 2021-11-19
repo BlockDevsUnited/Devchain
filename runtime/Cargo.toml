@@ -213,6 +213,11 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-11-1'
 version = '4.0.0-dev'
 
+[dependencies.pallet-evm]
+default-features = false
+git = 'https://github.com/purestake/frontier.git'
+branch = 'workshop-target'
+
 [features]
 default = ['std']
 runtime-benchmarks = [
@@ -261,4 +266,5 @@ std = [
     'pallet-treasury/std',
     'pallet-bounties/std',
     'pallet-society/std',
+    'pallet-evm/std',
 ]
