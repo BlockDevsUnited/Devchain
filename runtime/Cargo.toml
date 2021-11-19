@@ -233,6 +233,16 @@ default-features = false
 git = 'https://github.com/purestake/frontier.git'
 branch = 'workshop-target'
 
+[dependencies.pallet-evm-precompile-simple]
+default-features = false
+git = 'https://github.com/purestake/frontier.git'
+branch = 'workshop-target'
+
+[dependencies.pallet-evm-precompile-modexp]
+default-features = false
+git = 'https://github.com/purestake/frontier.git'
+branch = 'workshop-target'
+
 [features]
 default = ['std']
 runtime-benchmarks = [

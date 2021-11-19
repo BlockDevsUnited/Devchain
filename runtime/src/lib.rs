@@ -434,7 +434,17 @@ impl pallet_evm::Config for Runtime {
 	type GasWeightMapping = ();
 	type OnChargeTransaction = ();
 	type FindAuthor = ();
-	type Precompiles = ();
+		// Add several standard precompiles. Inspired by Byzantiium precompiles
+	// https://github.com/ethereum/go-ethereum/blob/3c46f557/core/vm/contracts.go#L56
+	// Frontier contains more precompiles you can use too.
+	type Precompiles = (
+		pallet_evm_precompile_simple::ECRecover,
+		pallet_evm_precompile_simple::Sha256,
+		pallet_evm_precompile_simple::Ripemd160,
+		pallet_evm_precompile_simple::Identity,
+		pallet_evm_precompile_modexp::Modexp,
+		pallet_evm_precompile_simple::ECRecoverPublicKey,
+	);
 }
 
 impl pallet_ethereum::Config for Runtime {
