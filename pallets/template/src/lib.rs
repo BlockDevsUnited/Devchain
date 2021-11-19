@@ -39,7 +39,7 @@ pub mod pallet {
 	pub type Something<T> = StorageValue<_, u32>;
 
 	// Pallets use events to inform users when important changes are made.
-	// https://docs.substrate.io/v3/runtime/events-and-errors
+	// https://docs.substrate.io/v3/runtime/events
 	#[pallet::event]
 	#[pallet::generate_deposit(pub(super) fn deposit_event)]
 	pub enum Event<T: Config> {

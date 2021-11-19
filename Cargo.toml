@@ -1,9 +1,13 @@
+[profile.release]
+panic = 'unwind'
+
 [workspace]
 members = [
     'node',
     'pallets/template',
     'runtime',
 ]
+<<<<<<< HEAD
 
 # Use scale-info compatible crates that I hacked together. Each of these overrides is associated with a
 # dependency in another repo
@@ -17,3 +21,5 @@ ethereum = { git = "https://github.com/purestake/ethereum", branch = "joshy-scal
 
 [profile.release]
 panic = 'unwind'
+=======
+>>>>>>> parent of d8063c4 (Update to `monthly-2021-11` (#259))
