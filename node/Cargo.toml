@@ -31,6 +31,10 @@ structopt = '0.3.8'
 hex-literal = '0.3'
 futures = '0.3'
 
+[dependencies.fc-consensus]
+git = 'https://github.com/purestake/frontier.git'
+branch = 'workshop-target'
+
 [dependencies.fc-mapping-sync]
 git = 'https://github.com/purestake/frontier.git'
 branch = 'workshop-target'
