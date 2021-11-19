@@ -29,6 +29,15 @@ version = '3.0.0-monthly-2021-10'
 jsonrpc-core = '18.0.0'
 structopt = '0.3.8'
 hex-literal = '0.3'
+futures = '0.3'
+
+[dependencies.fc-mapping-sync]
+git = 'https://github.com/purestake/frontier.git'
+branch = 'workshop-target'
+
+[dependencies.fc-db]
+git = 'https://github.com/purestake/frontier.git'
+branch = 'workshop-target'
 
 [dependencies.fp-rpc]
 git = 'https://github.com/purestake/frontier.git'

@@ -1533,6 +1533,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "fc-mapping-sync"
+version = "2.0.0-dev"
+source = "git+https://github.com/purestake/frontier.git?branch=workshop-target#31ad4ce8d0019b0f5857d6ac96ebaeefd7ee3d67"
+dependencies = [
+ "fc-consensus",
+ "fc-db",
+ "fp-consensus",
+ "fp-rpc",
+ "futures 0.3.17",
+ "futures-timer 3.0.2",
+ "log",
+ "sc-client-api",
+ "sp-api",
+ "sp-blockchain",
+ "sp-runtime",
+]
+
+[[package]]
 name = "fc-rpc"
 version = "2.0.0-dev"
 source = "git+https://github.com/purestake/frontier.git?branch=workshop-target#31ad4ce8d0019b0f5857d6ac96ebaeefd7ee3d67"
@@ -3859,10 +3877,13 @@ dependencies = [
 name = "node-template"
 version = "3.0.0-monthly-2021-10"
 dependencies = [
+ "fc-db",
+ "fc-mapping-sync",
  "fc-rpc",
  "fp-rpc",
  "frame-benchmarking",
  "frame-benchmarking-cli",
+ "futures 0.3.17",
  "hex-literal",
  "jsonrpc-core",
  "node-template-runtime",
