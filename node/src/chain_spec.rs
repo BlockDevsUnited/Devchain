@@ -1,6 +1,6 @@
 use node_template_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig, Signature, SudoConfig,
-	SystemConfig, SocietyConfig, WASM_BINARY, Balance, DOLLARS,  EVMConfig, GenesisAccount
+	SystemConfig, SocietyConfig, WASM_BINARY, Balance, DOLLARS,  EVMConfig, GenesisAccount, EthereumConfig
 };
 use sc_service::ChainType;
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
@@ -181,5 +181,6 @@ fn testnet_genesis(
 				accounts
 			}
 		},
+		ethereum: EthereumConfig{},
 	}
 }
