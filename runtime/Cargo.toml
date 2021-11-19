@@ -4,7 +4,7 @@ version = '3.0.0-monthly-2021-10'
 description = 'A fresh FRAME-based Substrate runtime, ready for hacking.'
 authors = ['Substrate DevHub <https://github.com/substrate-developer-hub>']
 homepage = 'https://substrate.io/'
-edition = '2018'
+edition = '2021'
 license = 'Unlicense'
 publish = false
 repository = 'https://github.com/substrate-developer-hub/substrate-node-template/'
@@ -19,11 +19,7 @@ version = '3.0.0-monthly-2021-10'
 
 [build-dependencies.substrate-wasm-builder]
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '5.0.0-dev'
 
 [dependencies.codec]
@@ -36,62 +32,38 @@ version = '2.0.0'
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 optional = true
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.frame-executive]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.frame-support]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.frame-system]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.frame-system-benchmarking]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 optional = true
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.frame-system-rpc-runtime-api]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.hex-literal]
@@ -101,81 +73,49 @@ version = '0.3.1'
 [dependencies.pallet-aura]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.pallet-balances]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.pallet-grandpa]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.pallet-randomness-collective-flip]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.pallet-sudo]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.pallet-timestamp]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.pallet-transaction-payment]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.pallet-transaction-payment-rpc-runtime-api]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.scale-info]
@@ -186,107 +126,66 @@ version = '1.0'
 [dependencies.sp-api]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.sp-block-builder]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.sp-consensus-aura]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '0.10.0-dev'
 
 [dependencies.sp-core]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.sp-inherents]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.sp-offchain]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.sp-runtime]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.sp-session]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.sp-std]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.sp-transaction-pool]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.sp-version]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-<<<<<<< HEAD
 tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
@@ -300,9 +199,6 @@ version = '4.0.0-dev'
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-11-1'
-=======
-tag = 'monthly-2021-11'
->>>>>>> parent of 3dd3b34 (update rust 2021 (#261))
 version = '4.0.0-dev'
 
 [dependencies.pallet-bounties]
