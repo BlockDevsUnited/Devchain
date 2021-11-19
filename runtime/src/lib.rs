@@ -11,7 +11,7 @@ use pallet_grandpa::{
 };
 use sp_api::impl_runtime_apis;
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
-use sp_core::{crypto::KeyTypeId, OpaqueMetadata, H160};
+use sp_core::{crypto::KeyTypeId, OpaqueMetadata, H160, H256};
 use sp_runtime::{
 	create_runtime_str, generic, impl_opaque_keys,
 	traits::{PostDispatchInfoOf, Dispatchable, AccountIdLookup, BlakeTwo256, Block as BlockT, IdentifyAccount, NumberFor, Verify},
@@ -26,9 +26,11 @@ use sp_version::RuntimeVersion;
 // Frontier related imports.
 use sp_core::U256;
 use pallet_evm::{
-	EnsureAddressRoot, EnsureAddressNever, HashedAddressMapping,
+	Account as EVMAccount, FeeCalculator, Runner, EnsureAddressRoot, EnsureAddressNever, HashedAddressMapping,
 };
 use pallet_ethereum::EthereumBlockHashMapping;
+use pallet_ethereum::{Call::transact, EthereumBlockHashMapping, Transaction as EthereumTransaction};
+use fp_rpc::TransactionStatus;
 
 // pub use this so we can import it in the chain spec.
 #[cfg(feature = "std")]
@@ -590,6 +592,125 @@ impl_runtime_apis! {
 	impl sp_offchain::OffchainWorkerApi<Block> for Runtime {
 		fn offchain_worker(header: &<Block as BlockT>::Header) {
 			Executive::offchain_worker(header)
+		}
+	}
+
+	impl fp_rpc::EthereumRuntimeRPCApi<Block> for Runtime {
+		fn chain_id() -> u64 {
+			<Runtime as pallet_evm::Config>::ChainId::get()
+		}
+
+		fn account_basic(address: H160) -> EVMAccount {
+			EVM::account_basic(&address)
+		}
+
+		fn gas_price() -> U256 {
+			<Runtime as pallet_evm::Config>::FeeCalculator::min_gas_price()
+		}
+
+		fn account_code_at(address: H160) -> Vec<u8> {
+			EVM::account_codes(address)
+		}
+
+		fn author() -> H160 {
+			<pallet_evm::Pallet<Runtime>>::find_author()
+		}
+
+		fn storage_at(address: H160, index: U256) -> H256 {
+			let mut tmp = [0u8; 32];
+			index.to_big_endian(&mut tmp);
+			EVM::account_storages(address, H256::from_slice(&tmp[..]))
+		}
+
+		fn call(
+			from: H160,
+			to: H160,
+			data: Vec<u8>,
+			value: U256,
+			gas_limit: U256,
+			gas_price: Option<U256>,
+			nonce: Option<U256>,
+			estimate: bool,
+		) -> Result<pallet_evm::CallInfo, sp_runtime::DispatchError> {
+			let config = if estimate {
+				let mut config = <Runtime as pallet_evm::Config>::config().clone();
+				config.estimate = true;
+				Some(config)
+			} else {
+				None
+			};
+
+			<Runtime as pallet_evm::Config>::Runner::call(
+				from,
+				to,
+				data,
+				value,
+				gas_limit.low_u64(),
+				gas_price,
+				nonce,
+				config.as_ref().unwrap_or(<Runtime as pallet_evm::Config>::config()),
+			).map_err(|err| err.into())
+		}
+
+		fn create(
+			from: H160,
+			data: Vec<u8>,
+			value: U256,
+			gas_limit: U256,
+			gas_price: Option<U256>,
+			nonce: Option<U256>,
+			estimate: bool,
+		) -> Result<pallet_evm::CreateInfo, sp_runtime::DispatchError> {
+			let config = if estimate {
+				let mut config = <Runtime as pallet_evm::Config>::config().clone();
+				config.estimate = true;
+				Some(config)
+			} else {
+				None
+			};
+
+			<Runtime as pallet_evm::Config>::Runner::create(
+				from,
+				data,
+				value,
+				gas_limit.low_u64(),
+				gas_price,
+				nonce,
+				config.as_ref().unwrap_or(<Runtime as pallet_evm::Config>::config()),
+			).map_err(|err| err.into())
+		}
+
+		fn current_transaction_statuses() -> Option<Vec<TransactionStatus>> {
+			Ethereum::current_transaction_statuses()
+		}
+
+		fn current_block() -> Option<pallet_ethereum::Block> {
+			Ethereum::current_block()
+		}
+
+		fn current_receipts() -> Option<Vec<pallet_ethereum::Receipt>> {
+			Ethereum::current_receipts()
+		}
+
+		fn current_all() -> (
+			Option<pallet_ethereum::Block>,
+			Option<Vec<pallet_ethereum::Receipt>>,
+			Option<Vec<TransactionStatus>>
+		) {
+			(
+				Ethereum::current_block(),
+				Ethereum::current_receipts(),
+				Ethereum::current_transaction_statuses()
+			)
+		}
+
+		fn extrinsic_filter(
+			xts: Vec<<Block as BlockT>::Extrinsic>,
+		) -> Vec<EthereumTransaction> {
+			xts.into_iter().filter_map(|xt| match xt.0.function {
+				Call::Ethereum(transact{transaction}) => Some(transaction),
+				_ => None
+			}).collect::<Vec<EthereumTransaction>>()
 		}
 	}
 
