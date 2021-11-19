@@ -243,6 +243,20 @@ default-features = false
 git = 'https://github.com/purestake/frontier.git'
 branch = 'workshop-target'
 
+[dependencies.precompile-utils]
+default-features = false
+git = 'https://github.com/purestake/moonbeam'
+branch = 'frontier-workshop-2021'
+
+[dependencies.num_enum]
+version = '0.5.3'
+default-features = false
+
+[dependencies.fp-evm]
+default-features = false
+git = 'https://github.com/purestake/frontier.git'
+branch = 'workshop-target'
+
 [features]
 default = ['std']
 runtime-benchmarks = [
@@ -295,4 +309,6 @@ std = [
     'pallet-ethereum/std',
     'fp-self-contained/std',
     'fp-rpc/std',
+    'precompile-utils/std',
+    'num_enum/std',
 ]
