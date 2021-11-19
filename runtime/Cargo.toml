@@ -218,6 +218,16 @@ default-features = false
 git = 'https://github.com/purestake/frontier.git'
 branch = 'workshop-target'
 
+[dependencies.pallet-ethereum]
+default-features = false
+git = 'https://github.com/purestake/frontier.git'
+branch = 'workshop-target'
+
+[dependencies.fp-self-contained]
+default-features = false
+git = 'https://github.com/purestake/frontier.git'
+branch = 'workshop-target'
+
 [features]
 default = ['std']
 runtime-benchmarks = [
@@ -267,4 +277,6 @@ std = [
     'pallet-bounties/std',
     'pallet-society/std',
     'pallet-evm/std',
+    'pallet-ethereum/std',
+    'fp-self-contained/std',
 ]
