@@ -242,15 +242,25 @@ pub fn new_full(mut config: Configuration) -> Result<TaskManager, ServiceError> 
 	let name = config.network.node_name.clone();
 	let enable_grandpa = !config.disable_grandpa;
 	let prometheus_registry = config.prometheus_registry().cloned();
+	let is_authority = config.role.is_authority();
+
 
 	let rpc_extensions_builder = {
 		let client = client.clone();
 		let pool = transaction_pool.clone();
+		let network = network.clone();
+		let frontier_backend = frontier_backend.clone();
 
 		Box::new(move |deny_unsafe, _| {
-			let deps =
-				crate::rpc::FullDeps { client: client.clone(), pool: pool.clone(), deny_unsafe, network: network.clone()};
-
+			let deps = crate::rpc::FullDeps {
+				client: client.clone(),
+				pool: pool.clone(),
+				graph: pool.pool().clone(),
+				deny_unsafe,
+				is_authority,
+				network: network.clone(),
+				backend: frontier_backend.clone(),
+			};
 			Ok(crate::rpc::create_full(deps))
 		})
 	};
