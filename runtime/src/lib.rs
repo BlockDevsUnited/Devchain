@@ -453,7 +453,7 @@ construct_runtime!(
 		
 		// Governance stuff
 		Council: pallet_collective::<Instance1>::{Pallet, Call, Storage, Origin<T>, Event<T>, Config<T>},
-		Treasury: pallet_treasury::{Pallet, Call, Storage, Config<T>, Event<T>},
+		Treasury: pallet_treasury::{Pallet, Call, Storage, Config, Event<T>},
 		Bounties: pallet_bounties::{Pallet, Call, Storage, Event<T>},
 		Society: pallet_society::{Pallet, Call, Storage, Config<T>, Event<T>},
 		

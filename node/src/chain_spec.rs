@@ -153,8 +153,6 @@ fn testnet_genesis(
 			// Assign network admin rights.
 			key: root_key,
 		},
-<<<<<<< HEAD
-		transaction_payment: Default::default(),
 		council: Default::default(),
 		treasury: Default::default(),
 		society: SocietyConfig {
@@ -166,7 +164,5 @@ fn testnet_genesis(
 			pot: 20000,
 			max_members: 12,
 		},
-=======
->>>>>>> parent of d8063c4 (Update to `monthly-2021-11` (#259))
 	}
 }

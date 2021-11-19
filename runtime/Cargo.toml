@@ -4,7 +4,7 @@ version = '3.0.0-monthly-2021-10'
 description = 'A fresh FRAME-based Substrate runtime, ready for hacking.'
 authors = ['Substrate DevHub <https://github.com/substrate-developer-hub>']
 homepage = 'https://substrate.io/'
-edition = '2021'
+edition = '2018'
 license = 'Unlicense'
 publish = false
 repository = 'https://github.com/substrate-developer-hub/substrate-node-template/'
@@ -192,25 +192,25 @@ version = '4.0.0-dev'
 [dependencies.pallet-collective]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-11-1'
+tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
 [dependencies.pallet-treasury]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-11-1'
+tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
 [dependencies.pallet-bounties]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-11-1'
+tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
 [dependencies.pallet-society]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-11-1'
+tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 
 [dependencies.pallet-evm]
