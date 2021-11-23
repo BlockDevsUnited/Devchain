@@ -28,7 +28,6 @@ use sp_core::U256;
 use pallet_evm::{
 	Account as EVMAccount, FeeCalculator, Runner, EnsureAddressRoot, EnsureAddressNever, HashedAddressMapping,
 };
-use pallet_ethereum::EthereumBlockHashMapping;
 use pallet_ethereum::{Call::transact, EthereumBlockHashMapping, Transaction as EthereumTransaction};
 use fp_rpc::TransactionStatus;
 use codec::{Encode, Decode};
