@@ -49,7 +49,7 @@ pub use frame_support::{
 	PalletId,
 	StorageValue,
 };
-use frame_system::{EnsureOneOf, EnsureRoot};
+pub use frame_system::{EnsureOneOf, EnsureRoot};
 use sp_core::u32_trait::{_1, _2, _3, _5};
 pub use pallet_balances::Call as BalancesCall;
 pub use pallet_timestamp::Call as TimestampCall;
@@ -341,12 +341,12 @@ parameter_types! {
 impl pallet_treasury::Config for Runtime {
 	type PalletId = TreasuryPalletId;
 	type Currency = Balances;
-	type ApproveOrigin = pallet_template::EnsureOneOf<
+	type ApproveOrigin = EnsureOneOf<
 		AccountId,
 		EnsureRoot<AccountId>,
 		pallet_collective::EnsureProportionAtLeast<_3, _5, AccountId, CouncilCollective>,
 	>;
-	type RejectOrigin = pallet_template::MustBeMember<AccountId, EnsureRoot<AccountId>, EnsureRoot<AccountId>>;
+	type RejectOrigin = EnsureOneOf<AccountId, EnsureRoot<AccountId>, EnsureRoot<AccountId>>;
 	type Event = Event;
 	type OnSlash = ();
 	type ProposalBond = ProposalBond;
