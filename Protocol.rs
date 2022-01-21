@@ -73,3 +73,18 @@
 //! - `unassign_curator` - Unassign an accepted curator from a specific earmark.
 //! - `close_bounty` - Cancel the earmark for a specific treasury amount and close the bounty.
 //! 
+//! ## User journey
+//! 
+//! 1. User can browse through existing Societies or create their own.
+//! 2. A new user creating their own Society needs to stake some amount and will become the Founder.
+//! 3. There can be multiple founders. Founders can invite new members and set the Society rules.
+//! 4. Rules can be modified: 
+//!     i. amount to maintain membership or amount of activity to maintain membership.
+//!     ii. reason for member to be kicked off
+//!     iii. number of bounties allowed to review per week
+//!     iv. voting threshold to approve reviews
+//!     v. 
+//! 5. Benefits: receive payouts for participating.
+//! 
+//! 
+//! 
